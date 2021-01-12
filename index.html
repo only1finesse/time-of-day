@@ -99,19 +99,19 @@
 		let myYear = myDate.getFullYear(); 
 		let myDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 		
-		if(myHours < 12){  
+		if(myHours >= 5 && myHours <= 12){  
 		myGreeting = '<b>' + 'Good Morning! 🌥' + '</b>'  
 		myColor = 'orange' 
 		document.getElementById('imagetime').src = "images/morning.jpg";
 		}  
 
-		else if (myHours >= 12 && myHours <= 17){
+		else if (myHours >= 12 && myHours <= 18){
 		myGreeting = '<b>' + 'Good Afternoon! 🌞' + '</b>'
 		myColor = 'yellow'
 		document.getElementById('imagetime').src = "images/afternoon.jpg";
 		}
 
-		else if (myHours >= 17 && myHours <= 24){
+		else if (myHours >= 18 && myHours < 23){
 		myGreeting = '<b>' + 'Good Evening! 🌒' + '</b>'
 		myColor = '#014f94'
 		document.getElementById('imagetime').src = "images/evening.jpg";
