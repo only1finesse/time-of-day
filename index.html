@@ -48,6 +48,11 @@
 		nav a:hover{
 			text-decoration: none;
 		}	
+
+		#mydiv, .daygreeting {
+			font-size: x-large;
+			text-align: center;
+		}
     </style>
    
     <!--[if ltIE9]>
@@ -71,14 +76,15 @@
     <main>
 	 <header><h3>An IT121 Assignment by Stanley</h3></header>
 	 <div id="mydiv"></div>
+	 <div class="daygreeting" >Happy <span id="daydiv"></span> </div>
 	 <p>This HTML5 Flexible template could be a good starting point for some of your projects.  The template file starts by setting a background color on the HTML element, and setting max-width on the body, which is styled like a wrapper.  The BODY element is also set to a percentage width so it leaves a bit of HTML color until it shrinks in size toward the mobile view.</p>
 	 <p>There is an image with a class of FLEXIBLE which is set to a max-width equal to the size of the image.  Simutaneously the class sets the image to a percentage width, allowing the image to flex in size.  The height is not changed, as this would skew the image.</p>
 	 <p>The LIST elements inside the NAV are displayed inline by setting the display to be inline-block.  Bullets are removed by setting the UL to display</p>
 	 <p>The FOOTER includes a clear:both to keep everything above it!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
+	  <img id="imagetime" src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
      </main>
     <footer>
-      <small>&copy; 2013, All Rights Reserved ~
+      <small>&copy; 2013 - <span id="copyright"></span>, All Rights Reserved ~
       <a href="https://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
       <a href="https://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
       </small>
@@ -89,19 +95,38 @@
 		let myDate = new Date();  
 		let myHours = myDate.getHours(); 
 		let myGreeting = ''; 
-		let myColor = '';  
+		let myColor = ''; 
+		let myYear = myDate.getFullYear(); 
+		let myDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 		
-		if(myHours > 12){  
-		myGreeting = 'Good Afternoon! 🌞'  
+		if(myHours < 12){  
+		myGreeting = '<b>' + 'Good Morning! 🌥' + '</b>'  
 		myColor = 'orange' 
+		document.getElementById('imagetime').src = "images/morning.jpg";
 		}  
-		else{  
-		myGreeting = 'Good Morning! 🌥' 
-		myColor = 'yellow' 
-		} 
+
+		else if (myHours >= 12 && myHours <= 17){
+		myGreeting = '<b>' + 'Good Afternoon! 🌞' + '</b>'
+		myColor = 'yellow'
+		document.getElementById('imagetime').src = "images/afternoon.jpg";
+		}
+
+		else if (myHours >= 17 && myHours <= 24){
+		myGreeting = '<b>' + 'Good Evening! 🌒' + '</b>'
+		myColor = '#014f94'
+		document.getElementById('imagetime').src = "images/evening.jpg";
+		}
+
+		else {
+			myGreeting = '<b>' + 'Good Night 🌚' + '</b>'
+			myColor = 'gray'
+			document.getElementById('imagetime').src = "images/night.jpg";
+		};
 		
 		document.getElementById('mydiv').innerHTML = myGreeting; 
+		document.getElementById('daydiv').innerHTML = myDay[myDate.getDay()];
 		document.body.style.backgroundColor = myColor;
+		document.getElementById('copyright').innerHTML = myYear;
 
 	</script>
 </body>
